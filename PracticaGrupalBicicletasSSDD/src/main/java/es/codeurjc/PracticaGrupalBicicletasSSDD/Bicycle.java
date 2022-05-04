@@ -38,7 +38,6 @@ public class Bicycle {
 		f_alta = LocalDate.now();
 		estado = Estado.SIN_BASE;
 		estados = estados + Estado.SIN_BASE;
-		estacionAsig=null;
 	}
 	
 	public String getNSerie() {
@@ -67,7 +66,10 @@ public class Bicycle {
 		this.estado = e;
 		estados = estados +", "+e;
 	}
-
+	
+	public void setId(Long id) {
+		this.id_bicycle = id;
+	}
 	
 	
 	@Override
