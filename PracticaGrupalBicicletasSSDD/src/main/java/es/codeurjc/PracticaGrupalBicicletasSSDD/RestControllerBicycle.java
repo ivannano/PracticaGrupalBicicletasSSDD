@@ -1,6 +1,7 @@
 package es.codeurjc.PracticaGrupalBicicletasSSDD;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,10 +22,9 @@ public class RestControllerBicycle {
 	
 	@GetMapping("/bicycles/{idBicycle}")
 	public ResponseEntity<Bicycle> getBicycle(@PathVariable long idBicycle){
-		Bicycle bici = bicycleService.findById(idBicycle);
-		
-		if( bici != null) {
-			return ResponseEntity.ok(bici);
+		Optional<Bicycle> bici = bicycleService.findById(idBicycle);
+		if (bici.isPresent()) {
+			return ResponseEntity.ok(bici.get());
 		}else {
 			return ResponseEntity.notFound().build();
 		}

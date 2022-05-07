@@ -25,7 +25,7 @@ public class Bicycle {
 	private String modelo;
 	private LocalDate f_alta;
 	private Estado estado;
-	private String estados="";
+	//private String estados="";
 	
 	public enum Estado {SIN_BASE, EN_BASE, RESERVADA, BAJA}
 	
@@ -37,7 +37,7 @@ public class Bicycle {
 		modelo = m;
 		f_alta = LocalDate.now();
 		estado = Estado.SIN_BASE;
-		estados = estados + Estado.SIN_BASE;
+		//estados = estados + Estado.SIN_BASE;
 	}
 	
 	public String getNSerie() {
@@ -58,14 +58,14 @@ public class Bicycle {
 		return this.id_bicycle;
 	}
 
-	public String getEstados(){
+	/*public String getEstados(){
 		return estados;
 	}
 	
 	public void setEstado(Estado e){
 		this.estado = e;
 		estados = estados +", "+e;
-	}
+	}*/
 	
 	public void setId(Long id) {
 		this.id_bicycle = id;

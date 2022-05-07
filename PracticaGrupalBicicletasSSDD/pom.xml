@@ -10,7 +10,7 @@
     <description>PracticaGrupalBicicletasSSDD</description>
     <inceptionYear>2022</inceptionYear>
     
-    <parent>  
+    <parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.6.5</version>
@@ -44,6 +44,12 @@
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+		 	<version>1.5.12</version>
 		</dependency>
 		
     </dependencies>
