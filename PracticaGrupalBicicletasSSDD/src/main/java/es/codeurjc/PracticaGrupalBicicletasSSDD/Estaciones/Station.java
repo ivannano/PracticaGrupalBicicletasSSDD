@@ -1,0 +1,113 @@
+package es.codeurjc.PracticaGrupalBicicletasSSDD.Estaciones;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import es.codeurjc.PracticaGrupalBicicletasSSDD.Bicycle;
+
+
+@Entity
+public class Station {
+	//ATRIBUTOS
+		@Id 
+		@GeneratedValue(strategy = GenerationType.AUTO)
+		private Long Id=null;
+		@Column(unique = true)
+		private String numSerie;
+		private String coordenadas;
+		private String fechaInstalacion;
+		private Estado estado;
+		private int capacidad;
+		
+		@OneToMany(mappedBy="estacionAsig")
+		private List<Bicycle> bicicletas;
+		
+		public enum Estado{
+			ACTIVO,INACTIVO
+		}
+		
+		public Station () {
+		
+		}
+		
+		public Station(String numSerie, String coordenadas, int capacidad) {
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+			this.capacidad = capacidad;
+			this.coordenadas = coordenadas;
+			this.numSerie = numSerie;
+			this.fechaInstalacion = dtf.format(LocalDateTime.now());
+			this.estado = Estado.ACTIVO;
+		}
+		
+		public String getNumSerie() {
+			return numSerie;
+		}
+
+		public void setNumSerie(String numSerie) {
+			this.numSerie = numSerie;
+		}
+
+		public String getCoordenadas() {
+			return coordenadas;
+		}
+
+		public void setCoordenadas(String coordenadas) {
+			this.coordenadas = coordenadas;
+		}
+
+		public String getFechaInstalacion() {
+			return fechaInstalacion;
+		}
+
+		public Estado getEstado() {
+			return estado;
+		}
+		
+		public void setEstadoActivo() {
+			this.estado = Estado.ACTIVO;
+		}
+		
+		public void setEstadoInactivo() {
+			this.estado = Estado.INACTIVO;
+		}
+		
+		public int getCapacidad() {
+			return capacidad;
+		}
+
+		public void setCapacidad(int capacidad) {
+			this.capacidad = capacidad;
+		}
+
+		public Long getId() {
+			return Id;
+		}
+		public void setId(long id) {
+			this.Id = id; 
+		}
+		
+		public void addBicycle(Bicycle b) {
+			this.bicicletas.add(b);
+		}
+		public List<Bicycle> getBicicletas(){
+			return this.bicicletas;
+		}
+		public void NullBicicletas(){
+			this.bicicletas = null;
+		}
+
+
+		@Override
+		public String toString() {
+			return "Estacion [numSerie=" + numSerie + ", coordenadas=" + coordenadas + ", fechaInstalacion="
+					+ fechaInstalacion + ", estado=" + estado + ", capacidad=" + capacidad + "]";
+		}
+}
