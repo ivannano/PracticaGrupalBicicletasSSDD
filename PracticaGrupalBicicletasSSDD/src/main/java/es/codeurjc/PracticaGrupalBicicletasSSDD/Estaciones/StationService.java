@@ -39,4 +39,8 @@ public class StationService {
 	public void deleteById(long id) {
 		repository.deleteById(id);
 	}
+	
+	public Optional<Station> findById(long id){
+		return repository.findById(id);
+	}
 }

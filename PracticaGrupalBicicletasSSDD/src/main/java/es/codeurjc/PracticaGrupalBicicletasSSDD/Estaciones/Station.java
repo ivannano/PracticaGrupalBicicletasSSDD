@@ -11,7 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import es.codeurjc.PracticaGrupalBicicletasSSDD.Bicycle;
+import es.codeurjc.PracticaGrupalBicicletasSSDD.Bicicletas.Bicycle;
 
 
 @Entity
@@ -24,13 +24,13 @@ public class Station {
 		private String numSerie;
 		private String coordenadas;
 		private String fechaInstalacion;
-		private Estado estado;
+		private EstadoStation estado;
 		private int capacidad;
 		
 		@OneToMany(mappedBy="estacionAsig")
 		private List<Bicycle> bicicletas;
 		
-		public enum Estado{
+		public enum EstadoStation{
 			ACTIVO,INACTIVO
 		}
 		
@@ -44,7 +44,7 @@ public class Station {
 			this.coordenadas = coordenadas;
 			this.numSerie = numSerie;
 			this.fechaInstalacion = dtf.format(LocalDateTime.now());
-			this.estado = Estado.ACTIVO;
+			this.estado = EstadoStation.ACTIVO;
 		}
 		
 		public String getNumSerie() {
@@ -67,16 +67,16 @@ public class Station {
 			return fechaInstalacion;
 		}
 
-		public Estado getEstado() {
+		public EstadoStation getEstado() {
 			return estado;
 		}
 		
 		public void setEstadoActivo() {
-			this.estado = Estado.ACTIVO;
+			this.estado = EstadoStation.ACTIVO;
 		}
 		
 		public void setEstadoInactivo() {
-			this.estado = Estado.INACTIVO;
+			this.estado = EstadoStation.INACTIVO;
 		}
 		
 		public int getCapacidad() {

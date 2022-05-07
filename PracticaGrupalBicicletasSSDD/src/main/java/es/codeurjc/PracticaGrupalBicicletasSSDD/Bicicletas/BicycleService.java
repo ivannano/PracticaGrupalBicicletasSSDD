@@ -1,4 +1,4 @@
-package es.codeurjc.PracticaGrupalBicicletasSSDD;
+package es.codeurjc.PracticaGrupalBicicletasSSDD.Bicicletas;
 
 import java.util.Collection;
 import java.util.Optional;

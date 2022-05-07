@@ -1,4 +1,4 @@
-package es.codeurjc.PracticaGrupalBicicletasSSDD;
+package es.codeurjc.PracticaGrupalBicicletasSSDD.Bicicletas;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -13,6 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import es.codeurjc.PracticaGrupalBicicletasSSDD.Estaciones.Station;
+
+
 @Entity
 public class Bicycle {
 
@@ -26,6 +29,8 @@ public class Bicycle {
 	private LocalDate f_alta;
 	private Estado estado;
 	//private String estados="";
+	@OneToOne
+	private Station estacionAsig;
 	
 	public enum Estado {SIN_BASE, EN_BASE, RESERVADA, BAJA}
 	
@@ -71,6 +76,18 @@ public class Bicycle {
 		this.id_bicycle = id;
 	}
 	
+	public void setEstado(Estado e) {
+		this.estado = e;
+	}
+	
+	public Station getEstacionAsig() {
+		return this.estacionAsig;
+	}
+	
+	public Bicycle setEstacionAsig(Station s) {
+		this.estacionAsig = s;
+		return this;
+	}
 	
 	@Override
 	public String toString() {

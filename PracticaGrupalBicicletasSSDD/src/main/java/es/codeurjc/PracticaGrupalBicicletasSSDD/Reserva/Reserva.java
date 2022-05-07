@@ -1,4 +1,4 @@
-package es.codeurjc.PracticaGrupalBicicletasSSDD;
+package es.codeurjc.PracticaGrupalBicicletasSSDD.Reserva;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +23,6 @@ public class Reserva {
 		this.id_estacion = id_estacion;
 		this.id_usuario = id_usuario;
 	}
-	
 	public long getId_reserva() {
 		return id_reserva;
 	}

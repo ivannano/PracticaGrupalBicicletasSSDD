@@ -1,4 +1,4 @@
-package es.codeurjc.PracticaGrupalBicicletasSSDD;
+package es.codeurjc.PracticaGrupalBicicletasSSDD.Bicicletas;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
