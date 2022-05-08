@@ -17,7 +17,7 @@ public class RestControllerBicycle {
 	
 	@GetMapping("/bicycles")
 	public Collection<Bicycle> getBicycles(){
-		return bicycleService.findAll();
+		return bicycleService.findAll(); 
 	}
 	
 	@GetMapping("/bicycles/{idBicycle}")

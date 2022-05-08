@@ -26,7 +26,6 @@ public class Station {
 		private String fechaInstalacion;
 		private EstadoStation estado;
 		private int capacidad;
-		
 		@OneToMany(mappedBy="estacionAsig")
 		private List<Bicycle> bicicletas;
 		
@@ -95,7 +94,15 @@ public class Station {
 		}
 		
 		public void addBicycle(Bicycle b) {
-			this.bicicletas.add(b);
+			if (this.bicicletas.size()<this.getCapacidad()) {
+				this.bicicletas.add(b);
+			}
+		}
+		
+		public void remove(Bicycle b) {
+			if (this.bicicletas.contains(b)) {
+				this.bicicletas.remove(b);
+			}
 		}
 		public List<Bicycle> getBicicletas(){
 			return this.bicicletas;

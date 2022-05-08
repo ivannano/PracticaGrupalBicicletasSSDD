@@ -24,4 +24,8 @@ public class ReservaService {
 	public void save(Reserva b) {
 		repo.save(b);
 	}
+	
+	public void deleteById(Long id) {
+		repo.deleteById(id);
+	}
 }
