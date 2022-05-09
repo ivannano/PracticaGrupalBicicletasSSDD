@@ -31,6 +31,10 @@ import es.codeurjc.PracticaGrupalBicicletasSSDD.Bicicletas.BicycleService;
 import es.codeurjc.PracticaGrupalBicicletasSSDD.Bicicletas.Bicycle.Estado;
 import es.codeurjc.PracticaGrupalBicicletasSSDD.Estaciones.Station;
 import es.codeurjc.PracticaGrupalBicicletasSSDD.Estaciones.Station.EstadoStation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import es.codeurjc.PracticaGrupalBicicletasSSDD.Estaciones.StationService;
 
 @RestController
@@ -45,10 +49,20 @@ public class RestControllerReserva {
 	@Autowired
 	private BicycleService bicycleService;
 	
+//*************************************************************************************************
+	@Operation(summary = "Get a list of bookings")
 	@GetMapping("/reserva")
 	public Collection<Reserva> getBicycles(){
 		return reservaService.findAll();
 	}
+	
+//*************************************************************************************************	
+	@Operation(summary = "Get a booking by its id")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Found the booking", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "400", description = "Invalid id supplied", content = @Content),
+			@ApiResponse(responseCode = "404", description = "Booking not found", content = @Content) })
 	
 	@GetMapping("/reserva/{idBicycle}")
 	public ResponseEntity<Reserva> getBicycle(@PathVariable long idBicycle){
@@ -59,6 +73,13 @@ public class RestControllerReserva {
 			return ResponseEntity.notFound().build();
 		}
 	}
+	
+//*************************************************************************************************
+	@Operation(summary = "Create a new booking")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Booking created succesfully", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "404", description = "Station and bicycle don´t exist or don´t meet the conditions", content = @Content) })
 	
 	@PostMapping("/reserva")
 	public ResponseEntity<Reserva> newReserve(@RequestBody Reserva newReserve){
@@ -114,6 +135,12 @@ public class RestControllerReserva {
 		//}
 	}
 	
+//*************************************************************************************************
+	@Operation(summary = "Delete an existing booking by its id")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Found the user", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "404", description = "Booking not found, or station and bicycle don´t meet the conditions", content = @Content) })
 	@DeleteMapping("/reserva/{id_reserva}")
 	public ResponseEntity<Reserva> deleteReserve(@PathVariable Long id_reserva){
 		
@@ -159,9 +186,7 @@ public class RestControllerReserva {
 		}else {
 			return ResponseEntity.notFound().build();
 		}
-		
-		
+				
 	}
-	
-	
+		
 }
