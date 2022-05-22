@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import es.codeurjc.PracticaGrupalBicicletasSSDD.Bicicletas.Bicycle;
 
 
@@ -27,6 +29,7 @@ public class Station {
 		private EstadoStation estado;
 		private int capacidad;
 		@OneToMany(mappedBy="estacionAsig")
+		@JsonIgnore
 		private List<Bicycle> bicicletas;
 		
 		public enum EstadoStation{
