@@ -122,6 +122,7 @@ public class RestControllerReserva {
 				}
 				
 			}else
+				log.warn("La estacion o la bicicleta no existen");
 				return ResponseEntity.notFound().build();
 	
 	}
