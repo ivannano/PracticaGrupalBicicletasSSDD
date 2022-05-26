@@ -68,8 +68,10 @@ public class RestControllerReserva {
 	public ResponseEntity<Reserva> getBicycle(@PathVariable long idBicycle){
 		Optional<Reserva> r = reservaService.findById(idBicycle);
 		if (r.isPresent()) {
+			log.info("Reserva encontrada");
 			return ResponseEntity.ok(r.get());
 		}else {
+			log.error("Reserva no encontrada");
 			return ResponseEntity.notFound().build();
 		}
 	}
@@ -110,6 +112,7 @@ public class RestControllerReserva {
 						bicycleService.save(b.get());								//Ponemos la bicicleta como reservada
 						s.get().remove(b.get());									//Quitamos la bicicleta de su estacion
 						stationService.save(s.get());
+						log.info("Reserva creada correctamente");
 						return ResponseEntity.created(location).body(newReserve);
 					}
 					else {
@@ -118,11 +121,12 @@ public class RestControllerReserva {
 					
 				}
 				else {
+					log.error("Estación inactiva, bicicleta no está en base o la bicicleta no pertenece a la estación");
 					return ResponseEntity.notFound().build();
 				}
 				
 			}else
-				log.warn("La estacion o la bicicleta no existen");
+				log.error("La estacion o la bicicleta no encontradas");
 				return ResponseEntity.notFound().build();
 	
 	}
@@ -162,6 +166,7 @@ public class RestControllerReserva {
 						bicycleService.save(b.get());								//Ponemos la bicicleta como reservada
 						s.get().addBicycle(b.get());								//Quitamos la bicicleta de su estacion
 						stationService.save(s.get());
+						log.info("Reserva finalizada correctamente");
 						return ResponseEntity.ok().build();
 					}
 					else {
@@ -170,13 +175,16 @@ public class RestControllerReserva {
 					
 				}
 				else {
+					log.error("Estación inactiva, bicicleta no reservada o estación llena");
 					return ResponseEntity.notFound().build();
 				}
 				
 			}else
+				log.error("La estacion o la bicicleta no encontradas");
 				return ResponseEntity.notFound().build();
 		}
 		else {
+			log.error("Reserva no encontrada");
 			return ResponseEntity.notFound().build();
 		}
 						

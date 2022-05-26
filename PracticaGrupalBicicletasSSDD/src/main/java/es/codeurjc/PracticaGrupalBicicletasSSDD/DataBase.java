@@ -74,10 +74,5 @@ public class DataBase {
 		bicycleRepo.save(b6.setEstacionAsig(s2));
 		bicycleRepo.save(b7.setEstacionAsig(s2));
 		
-		/*long id1 = 1;
-		long id2 = 2;
-		long id3 = 1;
-		Reserva r1 = new Reserva(id1,id2,id3);
-		reservaRepo.save(r1);*/
 	}
 }
